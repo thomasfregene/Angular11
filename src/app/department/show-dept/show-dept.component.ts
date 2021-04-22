@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscriber } from 'rxjs';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-show-dept',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowDeptComponent implements OnInit {
 
-  constructor() { }
+  DepartmentList:any=[];
 
+  constructor(private service:SharedService) { }
+
+  //this is the first method to be invoked on mounting the component
   ngOnInit(): void {
+    this.refreshDeptList();
+  }
+
+  refreshDeptList(){
+    this.service.getDept().subscribe(data=>{
+      this.DepartmentList=data;
+    });
   }
 
 }
