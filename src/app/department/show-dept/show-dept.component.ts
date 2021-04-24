@@ -37,5 +37,15 @@ export class ShowDeptComponent implements OnInit {
     this.ActivateAddEditDepComp=true;
   }
 
+  closeClick(){
+    this.ActivateAddEditDepComp=false;
+    this.refreshDeptList()
+  }
+
+  editClick(item){
+    this.dep=item;
+    this.ModalTitle="Edit Department";
+    this.ActivateAddEditDepComp=true;
+  }
 
 }
