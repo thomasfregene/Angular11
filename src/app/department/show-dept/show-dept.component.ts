@@ -10,6 +10,9 @@ import { SharedService } from 'src/app/shared.service';
 export class ShowDeptComponent implements OnInit {
 
   DepartmentList:any=[];
+  ModalTitle:string;
+  ActivateAddEditDepComp:boolean=false;
+  dep:any;
 
   constructor(private service:SharedService) { }
 
@@ -23,5 +26,16 @@ export class ShowDeptComponent implements OnInit {
       this.DepartmentList=data;
     });
   }
+
+  addClick(){
+    this.dep={
+      id:0,
+      departmentName:""
+    }
+
+    this.ModalTitle="Add Department";
+    this.ActivateAddEditDepComp=true;
+  }
+
 
 }
