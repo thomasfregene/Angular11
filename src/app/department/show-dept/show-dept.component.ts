@@ -37,15 +37,26 @@ export class ShowDeptComponent implements OnInit {
     this.ActivateAddEditDepComp=true;
   }
 
-  closeClick(){
-    this.ActivateAddEditDepComp=false;
-    this.refreshDeptList()
-  }
-
   editClick(item){
     this.dep=item;
     this.ModalTitle="Edit Department";
     this.ActivateAddEditDepComp=true;
   }
+
+  deleteClick(item){
+    if(confirm('Are you sure you want to delete this item?')){
+      this.service.deleteDept(item.id).subscribe(data=>{
+        alert(data.toString());
+        this.refreshDeptList();
+      })
+    }
+  }
+
+  closeClick(){
+    this.ActivateAddEditDepComp=false;
+    this.refreshDeptList()
+  }
+
+  
 
 }
