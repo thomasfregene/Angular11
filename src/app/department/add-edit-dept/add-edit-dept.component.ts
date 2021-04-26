@@ -10,6 +10,7 @@ export class AddEditDeptComponent implements OnInit {
 
   constructor(private service: SharedService) { }
 
+  //passing prop from one component to another
   @Input() dep:any;
   id:number;
   departmentName:string;
