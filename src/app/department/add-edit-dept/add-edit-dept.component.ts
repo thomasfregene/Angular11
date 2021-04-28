@@ -39,4 +39,6 @@ export class AddEditDeptComponent implements OnInit {
       alert(res.toString());
     })
   }
+
+ 
 }

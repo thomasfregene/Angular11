@@ -48,4 +48,11 @@ export class SharedService {
   getAllDepartmentName():Observable<any[]>{
     return this.http.get<any[]>(`${this.API_URL}/employee/department`)
   }
+
+  //not yet implemented
+  UploadPhoto(val:any){
+    return this.http.post(`${this.API_URL}/employee/uploadphoto`, val);
+  }
+
+  PhotoUrl(){}
 }

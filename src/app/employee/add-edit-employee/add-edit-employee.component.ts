@@ -16,6 +16,9 @@ export class AddEditEmployeeComponent implements OnInit {
     firstName:string;
     lastName:string;
     department: ""
+    PhotoFileName:string;
+    PhotoFilePath:string;
+    DateOfJoining:Date
 
     DepartmentList:any=[];
 
@@ -34,6 +37,44 @@ export class AddEditEmployeeComponent implements OnInit {
       this.firstName = this.Emp.firstName,
       this.lastName = this.Emp.lastName,
       this.department = this.Emp.department
+    })
+  }
+
+  addEmployee(){
+    var val ={
+      id: this.Emp.id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      department: this.department
+    };
+    this.service.addEmployee(val).subscribe(res=>{
+      alert(res.toString());
+    });
+  }
+
+  editEmployee(){
+    var val ={
+      id: this.Emp.id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      department: this.department,
+      DateOfJoining: this.DateOfJoining
+    };
+    this.service.updateEmployee(val).subscribe(res=>{
+      alert(res.toString());
+    });
+  }
+
+  uploadPhoto(event){
+    var file = event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadeFile',file,file.name);
+
+    //sending formData to API
+    //not yet implemented
+    this.service.UploadPhoto(formData).subscribe((data:any)=>{
+      this.PhotoFileName=data.toString();
+      this.PhotoFilePath=this.service.PhotoUrl+this.PhotoFileName;
     })
   }
 
