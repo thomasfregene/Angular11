@@ -14,6 +14,11 @@ export class ShowDeptComponent implements OnInit {
   ActivateAddEditDepComp:boolean=false;
   dep:any;
 
+  //variables for custom filter
+  DepartmentIdFilter:string = "";
+  DepartmentNameFilter:string ="";
+  DepartmentListWithoutilter:any=[];
+
   constructor(private service:SharedService) { }
 
   //this is the first method to be invoked on mounting the component
@@ -24,6 +29,7 @@ export class ShowDeptComponent implements OnInit {
   refreshDeptList(){
     this.service.getDept().subscribe(data=>{
       this.DepartmentList=data;
+      this.DepartmentListWithoutilter=data;
     });
   }
 
@@ -57,6 +63,18 @@ export class ShowDeptComponent implements OnInit {
     this.refreshDeptList()
   }
 
-  
+  FilterFn(){
+    var DepartmentIdFilter = this.DepartmentIdFilter;
+    var DepartmentNameFilter = this.DepartmentNameFilter;
+
+    this.DepartmentList = this.DepartmentListWithoutilter.filter(function(el){
+      return el.id.toString().toLowerCase().includes(
+        DepartmentIdFilter.toString().trim().toLowerCase()
+      )&&
+      el.departmentName.toString().toLowerCase().includes(
+        DepartmentNameFilter.toString().trim().toLowerCase()
+      )
+    });
+  }
 
 }

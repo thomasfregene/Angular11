@@ -45,8 +45,22 @@
 
 <table class="table table-striped">
   <thead>
-    <th scoped="col">DepartmentId</th>
-    <th scoped="col">Department Name</th>
+    <th scoped="col">
+      <div class="d-flex flex-row">
+        <input [(ngModel)]="DepartmentIdFilter" 
+        class="form-control"
+        (keyup)="FilterFn()" placeholder="Filter">
+      </div>
+      DepartmentId
+    </th>
+    <th scoped="col">
+      <div class="d-flex flex-row">
+        <input [(ngModel)]="DepartmentNameFilter" 
+        class="form-control"
+        (keyup)="FilterFn()" placeholder="Filter">
+      </div>
+      Department Name
+    </th>
     <th scoped="col">Options</th>
   </thead>
   <tbody>
